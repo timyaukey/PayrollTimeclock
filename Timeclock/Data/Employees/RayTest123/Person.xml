@@ -1,0 +1,7 @@
+<Person>
+  <FullName>Ray 123 Test</FullName>
+  <PIN>123</PIN>
+  <ExternalID>RAYT</ExternalID>
+  <EmailAddress>RayTest@schmidtsgardencenter.com</EmailAddress>
+  <IMAP4Password>Password!123</IMAP4Password>
+</Person>

@@ -1,0 +1,8 @@
+<message>
+  <subject>Hi Judy</subject>
+  <sender>Robert 3993 Test&lt;RobertTest@schmidtsgardencenter.com&gt;</sender>
+  <recipient>Judy 4920 R. Test&lt;JudyTest@schmidtsgardencenter.com&gt;</recipient>
+  <senddatetime>3/15/2015 4:28 AM</senddatetime>
+  <body>This is a test
+to Judy.</body>
+</message>

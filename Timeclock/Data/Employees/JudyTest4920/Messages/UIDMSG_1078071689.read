@@ -1,0 +1,8 @@
+<message>
+  <subject>First from Robert Test</subject>
+  <sender>Robert 3993 Test&lt;RobertTest@schmidtsgardencenter.com&gt;</sender>
+  <recipient>Judy 4920 R. Test&lt;JudyTest@schmidtsgardencenter.com&gt;</recipient>
+  <senddatetime>3/15/2015 4:18 AM</senddatetime>
+  <body>This is the first message from Robert Test.
+It goes to Tim and Judy.</body>
+</message>

@@ -1,0 +1,8 @@
+<Person>
+  <FullName>Judy 4920 R. Test</FullName>
+  <PIN>4920</PIN>
+  <ExternalID>0005</ExternalID>
+  <EmailAddress>JudyTest@schmidtsgardencenter.com</EmailAddress>
+  <IMAP4Address>JudyTest@schmidtsgardencenter.com</IMAP4Address>
+  <IMAP4Password>Password!4920</IMAP4Password>
+</Person>

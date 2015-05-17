@@ -1,0 +1,70 @@
+<message>
+  <subject>Welcome to Pandora!</subject>
+  <sender>tim.westergren@pandora.com</sender>
+  <recipient>laurenmccutcheon@schmidtsgardencenter.com</recipient>
+  <senddatetime>4/2/2015 2:50 PM</senddatetime>
+  <body>This message is intended to be viewed in HTML
+
+Pandorahtml
+{
+	width: 100%;
+}body {
+background-color: #ececec;
+margin: 0;
+padding: 0;
+}.ReadMsgBody
+{
+	width: 100%;
+	background-color: #ececec;
+}
+.ExternalClass
+{
+	width: 100%;
+	background-color: #ececec;
+}a {
+color:#308ed5;
+	text-decoration:none;
+	font-weight:normal;
+}
+a:hover {
+color:#818181;
+	font-weight:normal;
+}a.top-link {
+	color:#33a0e0;
+	text-decoration:none;
+	font-weight:normal;
+}a.top-link:hover {
+	color:#888888;
+	text-decoration:underline;
+	font-weight:normal;
+}p, div {
+	margin:0; padding:0; margin-bottom:0;
+}
+table, table td {
+	border-collapse: collapse;
+}/*** prevents font resizing */
+html, body, table, td, a, span {
+	-webkit-text-size-adjust:none;
+}.mbl { max-height: 0px; font-size: 0; display: none; }@media only screen and (max-width: 480px){/*** below is style for body */
+	body{width:auto !important;}	/*** below is style for full width table */
+	table table{width:100%!important;}	/*** below is style for 600px table area */
+	table[class="table-600"] {width: 98% !important; }	/*** below is style for pandora header - do not change */
+	img[class="logo"] {margin: auto !important;}	/*** below is style for content area */
+	.no-mbl {display: none !important;}
+	.mbl { width: 100% !important; height: auto !important; display:inline !important; max-height: none !important;}
+	td[id="first_text"] {padding-right: 26px !important; padding-left: 26px !important; padding-top: 30px !important; padding-bottom: 0px !important; font-size: 14px !important; line-height: 20px !important;}
+	td[class="top_text"] {padding-right: 26px !important; padding-left: 26px !important; font-size: 14px !important; line-height: 20px !important;}
+	td[class="text"] {padding-right: 26px !important; padding-left: 26px !important; padding-top: 10px !important; padding-bottom: 0px !important; font-size: 14px !important; line-height: 20px !important;}
+	td[id="btm_txt"] {padding-top: 14px !important; padding-bottom: 9px !important;}
+	img[id="tim_img"] {width: 83px !important; height: auto !important;}
+	td[id="signoff"] {font-size: 14px !important; line-height: 20px !important; padding-top: 6px !important; padding-bottom: 14px !important; height: 40px !important;}
+	img[id="signature"] {width: 85px !important; height: auto !important;}	/*** below is style for footer - do not change */
+	table[id="social"] {width: 250px !important;}
+	td[id="fb"] { padding-left: 4px !important;}
+	}	Welcome to Pandora!Dear fellow music lover,We are delighted that you have joined Pandora. Welcome!Pandora was founded by musicians and music-lovers and it has been a labor of love for us for more than ten years. A decade into this journey it continues to thrill us each time someone new chooses to make Pandora part of their day.As you explore and discover the vast trove of music and comedy on Pandora, we encourage you to let us know if you have any suggestions, comments, or complaints &amp;ndash; we want to hear them all. Are we missing one of your favorite artists? Tell us. Know that we are single-mindedly dedicated to providing you with the best personalized radio listening experience in the world. The feedback we get from our listeners has an enormous impact on how we develop and improve Pandora, so please don't be shy.We also look forward to staying in touch by occasionally sending you emails (don't worry, just a few) about new music available on your stations or new releases from your favorite artists, as well as tips on how to get the most out of your personalized radio stations. We read every email sent to us.Thanks again for listening and for your support. We hope you enjoy your personalized Pandora radio!All my best,Tim (Founder) and the Listener Advocate team&amp;copy; Copyright 2014, Pandora Media, Inc. All rights reserved.
+2101 Webster St. Ste. 1650, Oakland, CA 94612
+You are currently subscribed to receive email updates from Pandora.
+Please click here to unsubscribe.
+If you have any trouble, please email us. 
+Privacy Policy</body>
+</message>

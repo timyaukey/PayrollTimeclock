@@ -1,0 +1,9 @@
+<message>
+  <subject>single send from J to R &amp; R</subject>
+  <sender>Judy 4920 R. Test&lt;JudyTest@schmidtsgardencenter.com&gt;</sender>
+  <recipient>Robert 3993 Test&lt;RobertTest@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Ray 123 Test&lt;RayTest@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Judy 4920 R. Test&lt;JudyTest@schmidtsgardencenter.com&gt;</recipient>
+  <senddatetime>3/15/2015 9:44 PM</senddatetime>
+  <body>ssfjtorr</body>
+</message>

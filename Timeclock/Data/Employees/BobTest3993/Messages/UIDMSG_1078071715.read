@@ -1,0 +1,10 @@
+<message>
+  <subject>TO everyone except Judy</subject>
+  <sender>Judy 4920 R. Test&lt;JudyTest@schmidtsgardencenter.com&gt;</sender>
+  <recipient>Timothy Yaukey&lt;yaukey@willowsoft.com&gt;</recipient>
+  <recipient>Robert 3993 Test&lt;RobertTest@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Ray 123 Test&lt;RayTest@schmidtsgardencenter.com&gt;</recipient>
+  <senddatetime>3/15/2015 10:13 PM</senddatetime>
+  <body>Sent by judy to everyone.
+That means 3 recipients.</body>
+</message>

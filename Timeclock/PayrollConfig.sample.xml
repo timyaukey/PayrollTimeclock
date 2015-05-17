@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SettingsPersisted>
+  <FirstPeriodStart>2010-12-21T00:00:00</FirstPeriodStart>
+  <DaysInPeriod>14</DaysInPeriod>
+  <WebSiteLabel>Employee Handbook</WebSiteLabel>
+  <WebSiteURL>http://sites.google.com/site/myhandbook/home</WebSiteURL>
+  <AdminPasswordHash>U03RBLwvCcwHCK6wFv0BDg==</AdminPasswordHash>
+  <NewsSources>
+    <NewsSource Address="http://schmidtsfeedback.blogspot.com/feeds/posts/default" />
+  </NewsSources>
+  <SMTPServer>smtp.something.com</SMTPServer>
+  <SMTPPort>587</SMTPPort>
+  <SMTPUserName>sender@something.com</SMTPUserName>
+  <SMTPPassword>fakepwd</SMTPPassword>
+  <SMTPSenderAddress>sender@something.com</SMTPSenderAddress>
+</SettingsPersisted>
