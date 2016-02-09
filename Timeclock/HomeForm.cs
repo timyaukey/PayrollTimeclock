@@ -99,10 +99,17 @@ namespace PayrollTimeclock
                 MessageBox.Show("Invalid administrator password.");
                 return;
             }
-            AdminForm adminFrm = new AdminForm();
+            AdminForm adminFrm = new AdminForm(true);
             adminFrm.ShowDialog();
             PayrollStatic.LoadPeople();
             LoadEmployeeList();
+        }
+
+        private void btnPayPeriodSummary_Click(object sender, EventArgs e)
+        {
+            PayrollStatic.Settings.ConfigureForDate();
+            AdminForm adminFrm = new AdminForm(false);
+            adminFrm.ShowDialog();
         }
 
         private void lnkTheBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -9,7 +9,8 @@ namespace PayrollTimeclock
     {
         Normal = 0,
         Overridden = 1,
-        Deleted = 2
+        Deleted = 2,
+        Absent = 3
     }
 
     public class Times
@@ -64,9 +65,10 @@ namespace PayrollTimeclock
             }
         }
 
-        public void Get(PayrollPeriod period, out List<TimePair> timePairs, out double overtimeHours)
+        public void Get(PayrollPeriod period, out List<TimePair> timePairs, out double overtimeHours, out List<TimePair> absentPairs)
         {
             timePairs = new List<TimePair>();
+            absentPairs = new List<TimePair>();
             ClockEvent startEvent = null;
             List<ClockEvent> eventsInPeriod = new List<ClockEvent>();
             foreach (ClockEvent clockEvent in _Events)
@@ -92,19 +94,29 @@ namespace PayrollTimeclock
                 {
                     if (startEvent.InOutDateTime.Date == clockEvent.InOutDateTime.Date)
                     {
-                        timePairs.Add(new TimePair(startEvent, clockEvent));
+                        PickTimes(timePairs, absentPairs, startEvent, clockEvent).Add(new TimePair(startEvent, clockEvent));
                         startEvent = null;
                     }
                     else
                     {
-                        timePairs.Add(new TimePair(startEvent, null));
+                        // pair cross a date boundary, so leave an open pair in the old date and start a new pair.
+                        PickTimes(timePairs, absentPairs, startEvent, null).Add(new TimePair(startEvent, null));
                         startEvent = clockEvent;
                     }
                 }
             }
             if (startEvent != null)
-                timePairs.Add(new TimePair(startEvent, null));
+                PickTimes(timePairs, absentPairs, startEvent, null).Add(new TimePair(startEvent, null));
             overtimeHours = ComputeOvertime(period, timePairs);
+        }
+
+        private static List<TimePair> PickTimes(List<TimePair> timePairs, List<TimePair> absentPairs, ClockEvent startEvent, ClockEvent endEvent)
+        {
+            if (startEvent != null && startEvent.Status == EventStatus.Absent)
+                return absentPairs;
+            if (endEvent !=null && endEvent.Status == EventStatus.Absent)
+                return absentPairs;
+            return timePairs;
         }
 
         private double ComputeOvertime(PayrollPeriod period, List<TimePair> timePairs)
@@ -131,16 +143,22 @@ namespace PayrollTimeclock
 
         public void ClockInOut(DateTime when)
         {
-            DateTime whenRounded = new DateTime(when.Year, when.Month, when.Day, when.Hour, when.Minute, 0);
-            _Events.AddLast(new ClockEvent(whenRounded, DateTime.Now, EventStatus.Overridden));
+            _Events.AddLast(new ClockEvent(ClockEvent.Round(when), DateTime.Now, EventStatus.Overridden));
             _Modified = true;
         }
 
         public DateTime ClockInOut()
         {
-            DateTime when = DateTime.Now;
-            DateTime whenRounded = new DateTime(when.Year, when.Month, when.Day, when.Hour, when.Minute, 0);
+            DateTime whenRounded = ClockEvent.Round(DateTime.Now);
             _Events.AddLast(new ClockEvent(whenRounded, DateTime.Now, EventStatus.Normal));
+            _Modified = true;
+            return whenRounded;
+        }
+
+        public DateTime ClockAbsent(DateTime when)
+        {
+            DateTime whenRounded = ClockEvent.Round(when);
+            _Events.AddLast(new ClockEvent(whenRounded, DateTime.Now, EventStatus.Absent));
             _Modified = true;
             return whenRounded;
         }

@@ -30,12 +30,13 @@
         {
             this.lblPeriod = new System.Windows.Forms.Label();
             this.lvwTimecards = new System.Windows.Forms.ListView();
-            this.colName = new System.Windows.Forms.ColumnHeader();
-            this.colExtID = new System.Windows.Forms.ColumnHeader();
-            this.colTotalHours = new System.Windows.Forms.ColumnHeader();
-            this.colRegHours = new System.Windows.Forms.ColumnHeader();
-            this.colOvrHours = new System.Windows.Forms.ColumnHeader();
-            this.colVacHours = new System.Windows.Forms.ColumnHeader();
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colExtID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTotalHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRegHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colOvrHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colVacHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colAbsentHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnOkay = new System.Windows.Forms.Button();
             this.lblTotals = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
@@ -52,9 +53,9 @@
             // 
             // lvwTimecards
             // 
-            this.lvwTimecards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwTimecards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwTimecards.CheckBoxes = true;
             this.lvwTimecards.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
@@ -62,10 +63,13 @@
             this.colTotalHours,
             this.colRegHours,
             this.colOvrHours,
-            this.colVacHours});
+            this.colVacHours,
+            this.colAbsentHours});
+            this.lvwTimecards.FullRowSelect = true;
+            this.lvwTimecards.GridLines = true;
             this.lvwTimecards.Location = new System.Drawing.Point(12, 25);
             this.lvwTimecards.Name = "lvwTimecards";
-            this.lvwTimecards.Size = new System.Drawing.Size(741, 323);
+            this.lvwTimecards.Size = new System.Drawing.Size(883, 323);
             this.lvwTimecards.TabIndex = 1;
             this.lvwTimecards.UseCompatibleStateImageBehavior = false;
             this.lvwTimecards.View = System.Windows.Forms.View.Details;
@@ -79,36 +83,42 @@
             // 
             this.colExtID.Text = "External ID";
             this.colExtID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colExtID.Width = 100;
+            this.colExtID.Width = 90;
             // 
             // colTotalHours
             // 
-            this.colTotalHours.Text = "Total Hours";
+            this.colTotalHours.Text = "Present Hours";
             this.colTotalHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colTotalHours.Width = 100;
+            this.colTotalHours.Width = 90;
             // 
             // colRegHours
             // 
             this.colRegHours.Text = "Reg Hours";
             this.colRegHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colRegHours.Width = 100;
+            this.colRegHours.Width = 90;
             // 
             // colOvrHours
             // 
             this.colOvrHours.Text = "Overtime Hours";
             this.colOvrHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colOvrHours.Width = 100;
+            this.colOvrHours.Width = 90;
             // 
             // colVacHours
             // 
             this.colVacHours.Text = "Vacation Hours";
             this.colVacHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colVacHours.Width = 100;
+            this.colVacHours.Width = 90;
+            // 
+            // colAbsentHours
+            // 
+            this.colAbsentHours.Text = "Absent Hours";
+            this.colAbsentHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colAbsentHours.Width = 90;
             // 
             // btnOkay
             // 
             this.btnOkay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOkay.Location = new System.Drawing.Point(662, 354);
+            this.btnOkay.Location = new System.Drawing.Point(804, 354);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(91, 23);
             this.btnOkay.TabIndex = 4;
@@ -129,7 +139,7 @@
             // btnExport
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Location = new System.Drawing.Point(565, 354);
+            this.btnExport.Location = new System.Drawing.Point(707, 354);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(91, 23);
             this.btnExport.TabIndex = 3;
@@ -141,7 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 389);
+            this.ClientSize = new System.Drawing.Size(907, 389);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.lblTotals);
             this.Controls.Add(this.btnOkay);
@@ -169,5 +179,6 @@
         private System.Windows.Forms.ColumnHeader colVacHours;
         private System.Windows.Forms.Label lblTotals;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.ColumnHeader colAbsentHours;
     }
 }

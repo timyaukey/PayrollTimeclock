@@ -11,19 +11,28 @@ namespace PayrollTimeclock
 {
     public partial class AdminForm : Form
     {
-        public AdminForm()
+        private bool _PrivilegedMode;
+
+        public AdminForm(bool privilegedMode)
         {
+            _PrivilegedMode = privilegedMode;
             InitializeComponent();
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            if (!_PrivilegedMode)
+                this.Text = "Pay Period Reports";
             txtDataFolder.Text = PayrollStatic.DataFolder;
             foreach (PayrollPeriod period in PayrollStatic.Settings.RecentPeriods)
             {
                 cboEndDate.Items.Add(period);
             }
             chkShowHiddenEmployees.Checked = PayrollStatic.ShowHiddenEmployees;
+            lblDataFolder.Visible = _PrivilegedMode;
+            txtDataFolder.Visible = _PrivilegedMode;
+            btnSelectDataFolder.Visible = _PrivilegedMode;
+            chkShowHiddenEmployees.Visible = _PrivilegedMode;
         }
 
         private void btnTimecardsCurrent_Click(object sender, EventArgs e)
@@ -50,7 +59,7 @@ namespace PayrollTimeclock
         private void ShowTimecardReport(PayrollPeriod period)
         {
             TimecardReportForm reportFrm = new TimecardReportForm();
-            reportFrm.Show(period);
+            reportFrm.Show(period, _PrivilegedMode);
         }
 
         private void btnSelectDataFolder_Click(object sender, EventArgs e)

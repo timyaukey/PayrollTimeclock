@@ -37,18 +37,19 @@
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.timerBlogRefresh = new System.Windows.Forms.Timer(this.components);
             this.lblNews = new System.Windows.Forms.Label();
+            this.btnPayPeriodSummary = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstEmployees
             // 
-            this.lstEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstEmployees.FormattingEnabled = true;
             this.lstEmployees.IntegralHeight = false;
             this.lstEmployees.Location = new System.Drawing.Point(12, 25);
             this.lstEmployees.Name = "lstEmployees";
-            this.lstEmployees.Size = new System.Drawing.Size(221, 416);
-            this.lstEmployees.TabIndex = 0;
+            this.lstEmployees.Size = new System.Drawing.Size(221, 388);
+            this.lstEmployees.TabIndex = 1;
             this.lstEmployees.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstEmployees_MouseDoubleClick);
             // 
             // lblEmployees
@@ -58,16 +59,16 @@
             this.lblEmployees.Location = new System.Drawing.Point(12, 9);
             this.lblEmployees.Name = "lblEmployees";
             this.lblEmployees.Size = new System.Drawing.Size(71, 13);
-            this.lblEmployees.TabIndex = 1;
+            this.lblEmployees.TabIndex = 0;
             this.lblEmployees.Text = "Employees:";
             // 
             // btnClockInOut
             // 
             this.btnClockInOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClockInOut.Location = new System.Drawing.Point(27, 447);
+            this.btnClockInOut.Location = new System.Drawing.Point(27, 419);
             this.btnClockInOut.Name = "btnClockInOut";
             this.btnClockInOut.Size = new System.Drawing.Size(191, 23);
-            this.btnClockInOut.TabIndex = 2;
+            this.btnClockInOut.TabIndex = 4;
             this.btnClockInOut.Text = "Clock In/Out Selected Employee";
             this.btnClockInOut.UseVisualStyleBackColor = true;
             this.btnClockInOut.Click += new System.EventHandler(this.btnClockInOut_Click);
@@ -75,10 +76,10 @@
             // btnAdmin
             // 
             this.btnAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdmin.Location = new System.Drawing.Point(27, 476);
+            this.btnAdmin.Location = new System.Drawing.Point(27, 448);
             this.btnAdmin.Name = "btnAdmin";
             this.btnAdmin.Size = new System.Drawing.Size(191, 23);
-            this.btnAdmin.TabIndex = 3;
+            this.btnAdmin.TabIndex = 5;
             this.btnAdmin.Text = "Administrative Functions";
             this.btnAdmin.UseVisualStyleBackColor = true;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
@@ -90,7 +91,7 @@
             this.lnkWebSite.Location = new System.Drawing.Point(27, 511);
             this.lnkWebSite.Name = "lnkWebSite";
             this.lnkWebSite.Size = new System.Drawing.Size(191, 26);
-            this.lnkWebSite.TabIndex = 4;
+            this.lnkWebSite.TabIndex = 7;
             this.lnkWebSite.TabStop = true;
             this.lnkWebSite.Text = "The Book Of Schmidt\'s";
             this.lnkWebSite.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -98,14 +99,14 @@
             // 
             // webBrowser
             // 
-            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser.Location = new System.Drawing.Point(248, 25);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(467, 509);
-            this.webBrowser.TabIndex = 5;
+            this.webBrowser.TabIndex = 3;
             this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // timerBlogRefresh
@@ -120,14 +121,26 @@
             this.lblNews.Location = new System.Drawing.Point(245, 9);
             this.lblNews.Name = "lblNews";
             this.lblNews.Size = new System.Drawing.Size(42, 13);
-            this.lblNews.TabIndex = 6;
+            this.lblNews.TabIndex = 2;
             this.lblNews.Text = "News:";
+            // 
+            // btnPayPeriodSummary
+            // 
+            this.btnPayPeriodSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPayPeriodSummary.Location = new System.Drawing.Point(27, 477);
+            this.btnPayPeriodSummary.Name = "btnPayPeriodSummary";
+            this.btnPayPeriodSummary.Size = new System.Drawing.Size(191, 23);
+            this.btnPayPeriodSummary.TabIndex = 6;
+            this.btnPayPeriodSummary.Text = "Pay Period Reports";
+            this.btnPayPeriodSummary.UseVisualStyleBackColor = true;
+            this.btnPayPeriodSummary.Click += new System.EventHandler(this.btnPayPeriodSummary_Click);
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(727, 546);
+            this.Controls.Add(this.btnPayPeriodSummary);
             this.Controls.Add(this.lblNews);
             this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.lnkWebSite);
@@ -155,6 +168,7 @@
         private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.Timer timerBlogRefresh;
         private System.Windows.Forms.Label lblNews;
+        private System.Windows.Forms.Button btnPayPeriodSummary;
     }
 }
 

@@ -27,5 +27,17 @@ namespace PayrollTimeclock
                 IsOpen = true;
             }
         }
+
+        public bool IsAbsent
+        {
+            get
+            {
+                if (StartEvent != null && StartEvent.Status == EventStatus.Absent)
+                    return true;
+                if (EndEvent != null && EndEvent.Status == EventStatus.Absent)
+                    return true;
+                return false;
+            }
+        }
     }
 }

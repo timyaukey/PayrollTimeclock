@@ -53,6 +53,7 @@ namespace PayrollTimeclock
         {
             btnClockNow.Enabled = enabled;
             btnAddSpecific.Enabled = enabled;
+            btnAddAbsent.Enabled = enabled;
             btnDeleteSpecific.Enabled = enabled;
             btnCurrentPeriod.Enabled = enabled;
             btnLastPeriod.Enabled = enabled;
@@ -62,36 +63,51 @@ namespace PayrollTimeclock
 
         private void ShowTimeCard()
         {
-            List<TimePair> pairs;
+            List<TimePair> timePairs;
+            List<TimePair> absentPairs;
+            List<TimePair> allPairs;
             double overtimeHours;
-            _Times.Get(_Period, out pairs, out overtimeHours);
+            _Times.Get(_Period, out timePairs, out overtimeHours, out absentPairs);
+            allPairs = new List<TimePair>(timePairs);
+            allPairs.AddRange(absentPairs);
+            allPairs.Sort(delegate(TimePair t1, TimePair t2)
+                { return t1.StartEvent.InOutDateTime.CompareTo(t2.StartEvent.InOutDateTime); }
+                );
             lvwPairs.Items.Clear();
-            double totalHours = 0;
-            foreach (TimePair pair in pairs)
+            double presentHours = 0;
+            double absentHours = 0;
+            foreach (TimePair pair in allPairs)
             {
                 string endTime = string.Empty;
                 string hours = string.Empty;
                 Color rowColor = Color.Pink;
+                string absent = string.Empty;
                 if (!pair.IsOpen)
                 {
                     endTime = FormatTimeOfDay(pair.EndEvent);
                     hours = pair.Length.TotalHours.ToString("N2");
                     rowColor = Color.White;
                 }
+                if (pair.IsAbsent)
+                    absent = " absent";
                 ListViewItem item = new ListViewItem(
                     new string[] {
                         pair.StartEvent.InOutDateTime.Date.ToString("MM/dd/yyyy"),
                         pair.StartEvent.InOutDateTime.DayOfWeek.ToString(),
                         FormatTimeOfDay(pair.StartEvent),
                         endTime,
-                        hours
+                        hours + absent
                     }
                     );
                 item.BackColor = rowColor;
                 lvwPairs.Items.Add(item);
-                totalHours += pair.Length.TotalHours;
+                if (pair.IsAbsent)
+                    absentHours += pair.Length.TotalHours;
+                else
+                    presentHours += pair.Length.TotalHours;
             }
-            lblTotalHours.Text = totalHours.ToString("N2") + " total hours";
+            lblPresentHours.Text = presentHours.ToString("N2") + " present hours";
+            lblAbsentHours.Text = absentHours.ToString("N2") + " absent hours";
             lblOvertimeHours.Text = overtimeHours.ToString("N2") + " overtime hours";
             lblPeriodDates.Text = _Period.StartDate.ToString("MM/dd/yyyy") +
                 " - " + _Period.EndDate.ToString("MM/dd/yyyy");
@@ -103,6 +119,10 @@ namespace PayrollTimeclock
             if (clockEvent.Status == EventStatus.Overridden)
             {
                 result = "<<" + result + ">>";
+            }
+            else if (clockEvent.Status == EventStatus.Absent)
+            {
+                result = "{{" + result + "}}";
             }
             return result;
         }
@@ -121,6 +141,16 @@ namespace PayrollTimeclock
             if (!TryParseDateTime(out when))
                 return;
             _Times.ClockInOut(when);
+            _Times.SaveToFile();
+            ShowTimeCard();
+        }
+
+        private void btnAddAbsent_Click(object sender, EventArgs e)
+        {
+            DateTime when;
+            if (!TryParseDateTime(out when))
+                return;
+            _Times.ClockAbsent(when);
             _Times.SaveToFile();
             ShowTimeCard();
         }
