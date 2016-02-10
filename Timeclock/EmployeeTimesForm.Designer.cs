@@ -122,7 +122,7 @@
             this.btnAddSpecific.Name = "btnAddSpecific";
             this.btnAddSpecific.Size = new System.Drawing.Size(181, 23);
             this.btnAddSpecific.TabIndex = 6;
-            this.btnAddSpecific.Text = "Add Specific Date and Time";
+            this.btnAddSpecific.Text = "Add Present Date and Time";
             this.btnAddSpecific.UseVisualStyleBackColor = true;
             this.btnAddSpecific.Click += new System.EventHandler(this.btnAddSpecific_Click);
             // 
@@ -130,11 +130,11 @@
             // 
             this.btnDeleteSpecific.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteSpecific.Enabled = false;
-            this.btnDeleteSpecific.Location = new System.Drawing.Point(460, 168);
+            this.btnDeleteSpecific.Location = new System.Drawing.Point(460, 197);
             this.btnDeleteSpecific.Name = "btnDeleteSpecific";
             this.btnDeleteSpecific.Size = new System.Drawing.Size(181, 23);
-            this.btnDeleteSpecific.TabIndex = 7;
-            this.btnDeleteSpecific.Text = "Delete Specific Date and Time";
+            this.btnDeleteSpecific.TabIndex = 8;
+            this.btnDeleteSpecific.Text = "Delete Date and Time";
             this.btnDeleteSpecific.UseVisualStyleBackColor = true;
             this.btnDeleteSpecific.Click += new System.EventHandler(this.btnDeleteSpecific_Click);
             // 
@@ -295,10 +295,10 @@
             // 
             this.btnAddAbsent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddAbsent.Enabled = false;
-            this.btnAddAbsent.Location = new System.Drawing.Point(460, 197);
+            this.btnAddAbsent.Location = new System.Drawing.Point(460, 168);
             this.btnAddAbsent.Name = "btnAddAbsent";
             this.btnAddAbsent.Size = new System.Drawing.Size(181, 23);
-            this.btnAddAbsent.TabIndex = 8;
+            this.btnAddAbsent.TabIndex = 7;
             this.btnAddAbsent.Text = "Add Absent Date and Time";
             this.btnAddAbsent.UseVisualStyleBackColor = true;
             this.btnAddAbsent.Click += new System.EventHandler(this.btnAddAbsent_Click);

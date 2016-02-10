@@ -122,7 +122,7 @@ namespace PayrollTimeclock
             }
             else if (clockEvent.Status == EventStatus.Absent)
             {
-                result = "{{" + result + "}}";
+                result = "{" + result + "}";
             }
             return result;
         }
