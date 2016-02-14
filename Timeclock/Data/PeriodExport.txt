@@ -1,2 +1,3 @@
 0019,E,Reg,3.78
-,E,Reg,13.60
+RAYT,E,Reg,3.58
+001TJY,E,Reg,14.15
