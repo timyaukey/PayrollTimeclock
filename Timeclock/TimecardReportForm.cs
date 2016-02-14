@@ -42,7 +42,8 @@ namespace PayrollTimeclock
             DateTime day = _Period.StartDate;
             for (; day <= _Period.EndDate; day = day.AddDays(1.0))
             {
-                lvwTimecards.Columns.Add(day.ToShortDateString(), 80, HorizontalAlignment.Right);
+                string dow = day.ToString("ddd");
+                lvwTimecards.Columns.Add(dow + " " + day.ToShortDateString(), 120, HorizontalAlignment.Right);
             }
         }
 
@@ -51,9 +52,11 @@ namespace PayrollTimeclock
             double grandPresentHours = 0.0;
             double grandOvertimeHours = 0.0;
             double grandAbsentHours = 0.0;
+            double grandExtraHours = 0.0;
             int daysInPeriod = (int)_Period.EndDate.Subtract(_Period.StartDate).TotalDays + 1;
             double[] totalPresentByDay = new double[daysInPeriod];
             double[] totalAbsentByDay = new double[daysInPeriod];
+            double[] totalExtraByDay = new double[daysInPeriod];
             lblPeriod.Text = _Period.StartDate.ToString("MM/dd/yyyy") +
                 " - " + _Period.EndDate.ToString("MM/dd/yyyy");
             lvwTimecards.Items.Clear();
@@ -64,10 +67,13 @@ namespace PayrollTimeclock
                 List<TimePair> absentPairs;
                 double presentHours = 0.0;
                 double absentHours = 0.0;
+                double extraHours = 0.0;
                 double overtimeHours;
                 bool hasOpenPairs = false;
+                bool hasMixedPairs = false;
                 double[] presentByDay = new double[daysInPeriod];
                 double[] absentByDay = new double[daysInPeriod];
+                double[] extraByDay = new double[daysInPeriod];
                 times.Get(_Period, out timePairs, out overtimeHours, out absentPairs);
                 foreach (TimePair pair in timePairs)
                 {
@@ -81,6 +87,14 @@ namespace PayrollTimeclock
                         int dayOffset = (int)pair.StartEvent.InOutDateTime.Subtract(_Period.StartDate).TotalDays;
                         presentByDay[dayOffset] += pair.Length.TotalHours;
                         totalPresentByDay[dayOffset] += pair.Length.TotalHours;
+                        if (pair.IsExtra)
+                        {
+                            extraHours += pair.Length.TotalHours;
+                            extraByDay[dayOffset] += pair.Length.TotalHours;
+                            totalExtraByDay[dayOffset] += pair.Length.TotalHours;
+                        }
+                        if (pair.IsMixed)
+                            hasMixedPairs = true;
                     }
                 }
                 foreach (TimePair pair in absentPairs)
@@ -100,6 +114,7 @@ namespace PayrollTimeclock
                 grandPresentHours += presentHours;
                 grandOvertimeHours += overtimeHours;
                 grandAbsentHours += absentHours;
+                grandExtraHours += extraHours;
                 ReportItem reportItem = new ReportItem();
                 reportItem.Employee = employee;
                 reportItem.Times = times;
@@ -113,26 +128,31 @@ namespace PayrollTimeclock
                 columnValues.Add(overtimeHours.ToString("N2"));
                 columnValues.Add(string.Empty);
                 columnValues.Add("{" + absentHours.ToString("N2") + "}");
+                columnValues.Add("[" + extraHours.ToString("N2") + "]");
                 for (int i = 0; i < daysInPeriod; i++)
                 {
                     string dayValue = presentByDay[i].ToString("N2");
                     if (absentByDay[i] > 0.0)
                         dayValue += " {" + absentByDay[i].ToString("N2") + "}";
+                    if (extraByDay[i] > 0.0)
+                        dayValue += " [" + extraByDay[i].ToString("N2") + "]";
                     columnValues.Add(dayValue);
                 }
                 ListViewItem cardItem = new ListViewItem(columnValues.ToArray());
                 cardItem.Checked = (reportItem.TotalHours > 0.0);
                 cardItem.Tag = reportItem;
-                if (hasOpenPairs)
+                if (hasOpenPairs || hasMixedPairs)
                     cardItem.BackColor = Color.Pink;
                 lvwTimecards.Items.Add(cardItem);
             }
-            List<string> totalsValues = new List<string>(new string[] { "Totals", "", "", "", "", "", "" });
+            List<string> totalsValues = new List<string>(new string[] { "Totals", "", "", "", "", "", "", "" });
             for (int i = 0; i < daysInPeriod; i++)
             {
                 string dayValue = totalPresentByDay[i].ToString("N2");
                 if (totalAbsentByDay[i] > 0.0)
                     dayValue += " {" + totalAbsentByDay[i].ToString("N2") + "}";
+                if (totalExtraByDay[i] > 0.0)
+                    dayValue += " [" + totalExtraByDay[i].ToString("N2") + "]";
                 totalsValues.Add(dayValue);
             }
             ListViewItem totalsItem = new ListViewItem(totalsValues.ToArray());
@@ -140,7 +160,8 @@ namespace PayrollTimeclock
             lblTotals.Text = "Present Total " + grandPresentHours.ToString("N2") +
                 ", Regular Total " + (grandPresentHours - grandOvertimeHours).ToString("N2") +
                 ", Overtime Total " + grandOvertimeHours.ToString("N2") +
-                ", Absent Total {" + grandAbsentHours.ToString("N2") + "}";
+                ", Absent Total {" + grandAbsentHours.ToString("N2") + "}" +
+                ", Extra Total [" + grandExtraHours.ToString("N2") + "]";
         }
 
         private void btnOkay_Click(object sender, EventArgs e)

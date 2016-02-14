@@ -28,6 +28,7 @@ namespace PayrollTimeclock
                 case EventStatus.Overridden: statusText = "O"; break;
                 case EventStatus.Deleted: statusText = "D"; break;
                 case EventStatus.Absent: statusText = "A"; break;
+                case EventStatus.Extra: statusText = "X"; break;
                 default: throw new NotImplementedException("Unrecognized ClockEvent status");
             }
             writer.WriteLine(InOutDateTime.ToString("g") + "|" +
@@ -53,6 +54,7 @@ namespace PayrollTimeclock
                 case "O": status = EventStatus.Overridden; break;
                 case "D": status = EventStatus.Deleted; break;
                 case "A": status = EventStatus.Absent; break;
+                case "X": status = EventStatus.Extra; break;
                 default: throw new InvalidDataException("Invalid status in " + line);
             }
             ClockEvent clockEvent = new ClockEvent(inOutDateTime, actionDateTime, status);

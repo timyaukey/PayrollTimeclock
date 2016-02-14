@@ -32,11 +32,30 @@ namespace PayrollTimeclock
         {
             get
             {
-                if (StartEvent != null && StartEvent.Status == EventStatus.Absent)
+                if (IsMixed)
+                    return false;
+                return StartEvent.Status == EventStatus.Absent;
+            }
+        }
+
+        public bool IsExtra
+        {
+            get
+            {
+                if (IsMixed)
+                    return false;
+                return StartEvent.Status == EventStatus.Extra;
+            }
+        }
+
+        public bool IsMixed
+        {
+            get
+            {
+                if (StartEvent == null || EndEvent == null)
                     return true;
-                if (EndEvent != null && EndEvent.Status == EventStatus.Absent)
-                    return true;
-                return false;
+                return (StartEvent.Status == EventStatus.Overridden ? EventStatus.Normal : StartEvent.Status)
+                    != (EndEvent.Status == EventStatus.Overridden ? EventStatus.Normal : EndEvent.Status);
             }
         }
     }

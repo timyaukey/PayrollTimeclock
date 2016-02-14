@@ -54,6 +54,8 @@
             this.lblProgess = new System.Windows.Forms.Label();
             this.btnAddAbsent = new System.Windows.Forms.Button();
             this.lblAbsentHours = new System.Windows.Forms.Label();
+            this.lblExtraHours = new System.Windows.Forms.Label();
+            this.btnAddExtra = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvwPairs
@@ -118,11 +120,11 @@
             // 
             this.btnAddSpecific.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddSpecific.Enabled = false;
-            this.btnAddSpecific.Location = new System.Drawing.Point(460, 139);
+            this.btnAddSpecific.Location = new System.Drawing.Point(460, 174);
             this.btnAddSpecific.Name = "btnAddSpecific";
             this.btnAddSpecific.Size = new System.Drawing.Size(181, 23);
-            this.btnAddSpecific.TabIndex = 6;
-            this.btnAddSpecific.Text = "Add Present Date and Time";
+            this.btnAddSpecific.TabIndex = 7;
+            this.btnAddSpecific.Text = "Add Scheduled Date and Time";
             this.btnAddSpecific.UseVisualStyleBackColor = true;
             this.btnAddSpecific.Click += new System.EventHandler(this.btnAddSpecific_Click);
             // 
@@ -130,10 +132,10 @@
             // 
             this.btnDeleteSpecific.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteSpecific.Enabled = false;
-            this.btnDeleteSpecific.Location = new System.Drawing.Point(460, 197);
+            this.btnDeleteSpecific.Location = new System.Drawing.Point(460, 261);
             this.btnDeleteSpecific.Name = "btnDeleteSpecific";
             this.btnDeleteSpecific.Size = new System.Drawing.Size(181, 23);
-            this.btnDeleteSpecific.TabIndex = 8;
+            this.btnDeleteSpecific.TabIndex = 10;
             this.btnDeleteSpecific.Text = "Delete Date and Time";
             this.btnDeleteSpecific.UseVisualStyleBackColor = true;
             this.btnDeleteSpecific.Click += new System.EventHandler(this.btnDeleteSpecific_Click);
@@ -142,29 +144,29 @@
             // 
             this.lblDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Location = new System.Drawing.Point(460, 236);
+            this.lblDateTime.Location = new System.Drawing.Point(460, 301);
             this.lblDateTime.Margin = new System.Windows.Forms.Padding(3);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(80, 13);
-            this.lblDateTime.TabIndex = 9;
+            this.lblDateTime.TabIndex = 11;
             this.lblDateTime.Text = "Date and Time:";
             // 
             // txtSpecificDateTime
             // 
             this.txtSpecificDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSpecificDateTime.Location = new System.Drawing.Point(460, 255);
+            this.txtSpecificDateTime.Location = new System.Drawing.Point(460, 320);
             this.txtSpecificDateTime.Name = "txtSpecificDateTime";
             this.txtSpecificDateTime.Size = new System.Drawing.Size(159, 20);
-            this.txtSpecificDateTime.TabIndex = 10;
+            this.txtSpecificDateTime.TabIndex = 12;
             // 
             // btnCurrentPeriod
             // 
             this.btnCurrentPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCurrentPeriod.Enabled = false;
-            this.btnCurrentPeriod.Location = new System.Drawing.Point(460, 327);
+            this.btnCurrentPeriod.Location = new System.Drawing.Point(460, 404);
             this.btnCurrentPeriod.Name = "btnCurrentPeriod";
             this.btnCurrentPeriod.Size = new System.Drawing.Size(181, 23);
-            this.btnCurrentPeriod.TabIndex = 11;
+            this.btnCurrentPeriod.TabIndex = 13;
             this.btnCurrentPeriod.Text = "Show Current Period";
             this.btnCurrentPeriod.UseVisualStyleBackColor = true;
             this.btnCurrentPeriod.Click += new System.EventHandler(this.btnCurrentPeriod_Click);
@@ -173,10 +175,10 @@
             // 
             this.btnLastPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLastPeriod.Enabled = false;
-            this.btnLastPeriod.Location = new System.Drawing.Point(460, 356);
+            this.btnLastPeriod.Location = new System.Drawing.Point(460, 433);
             this.btnLastPeriod.Name = "btnLastPeriod";
             this.btnLastPeriod.Size = new System.Drawing.Size(181, 23);
-            this.btnLastPeriod.TabIndex = 12;
+            this.btnLastPeriod.TabIndex = 14;
             this.btnLastPeriod.Text = "Show Previous Period";
             this.btnLastPeriod.UseVisualStyleBackColor = true;
             this.btnLastPeriod.Click += new System.EventHandler(this.btnLastPeriod_Click);
@@ -227,7 +229,7 @@
             this.lvwMessages.MultiSelect = false;
             this.lvwMessages.Name = "lvwMessages";
             this.lvwMessages.Size = new System.Drawing.Size(439, 206);
-            this.lvwMessages.TabIndex = 15;
+            this.lvwMessages.TabIndex = 17;
             this.lvwMessages.UseCompatibleStateImageBehavior = false;
             this.lvwMessages.View = System.Windows.Forms.View.Details;
             this.lvwMessages.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvwMessages_MouseDoubleClick);
@@ -255,7 +257,7 @@
             this.lblMessages.Margin = new System.Windows.Forms.Padding(3);
             this.lblMessages.Name = "lblMessages";
             this.lblMessages.Size = new System.Drawing.Size(58, 13);
-            this.lblMessages.TabIndex = 13;
+            this.lblMessages.TabIndex = 15;
             this.lblMessages.Text = "Messages:";
             // 
             // btnSendMessage
@@ -265,7 +267,7 @@
             this.btnSendMessage.Location = new System.Drawing.Point(460, 587);
             this.btnSendMessage.Name = "btnSendMessage";
             this.btnSendMessage.Size = new System.Drawing.Size(181, 23);
-            this.btnSendMessage.TabIndex = 17;
+            this.btnSendMessage.TabIndex = 19;
             this.btnSendMessage.Text = "New Message";
             this.btnSendMessage.UseVisualStyleBackColor = true;
             this.btnSendMessage.Click += new System.EventHandler(this.btnSendMessage_Click);
@@ -277,7 +279,7 @@
             this.btnReadMessage.Location = new System.Drawing.Point(460, 558);
             this.btnReadMessage.Name = "btnReadMessage";
             this.btnReadMessage.Size = new System.Drawing.Size(181, 23);
-            this.btnReadMessage.TabIndex = 16;
+            this.btnReadMessage.TabIndex = 18;
             this.btnReadMessage.Text = "Read Selected Message";
             this.btnReadMessage.UseVisualStyleBackColor = true;
             this.btnReadMessage.Click += new System.EventHandler(this.btnReadMessage_Click);
@@ -288,17 +290,17 @@
             this.lblProgess.Location = new System.Drawing.Point(76, 385);
             this.lblProgess.Name = "lblProgess";
             this.lblProgess.Size = new System.Drawing.Size(53, 13);
-            this.lblProgess.TabIndex = 14;
+            this.lblProgess.TabIndex = 16;
             this.lblProgess.Text = "(progress)";
             // 
             // btnAddAbsent
             // 
             this.btnAddAbsent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddAbsent.Enabled = false;
-            this.btnAddAbsent.Location = new System.Drawing.Point(460, 168);
+            this.btnAddAbsent.Location = new System.Drawing.Point(460, 203);
             this.btnAddAbsent.Name = "btnAddAbsent";
             this.btnAddAbsent.Size = new System.Drawing.Size(181, 23);
-            this.btnAddAbsent.TabIndex = 7;
+            this.btnAddAbsent.TabIndex = 8;
             this.btnAddAbsent.Text = "Add Absent Date and Time";
             this.btnAddAbsent.UseVisualStyleBackColor = true;
             this.btnAddAbsent.Click += new System.EventHandler(this.btnAddAbsent_Click);
@@ -314,11 +316,36 @@
             this.lblAbsentHours.TabIndex = 5;
             this.lblAbsentHours.Text = "(absent hours)";
             // 
+            // lblExtraHours
+            // 
+            this.lblExtraHours.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExtraHours.AutoSize = true;
+            this.lblExtraHours.Location = new System.Drawing.Point(460, 123);
+            this.lblExtraHours.Margin = new System.Windows.Forms.Padding(3);
+            this.lblExtraHours.Name = "lblExtraHours";
+            this.lblExtraHours.Size = new System.Drawing.Size(65, 13);
+            this.lblExtraHours.TabIndex = 6;
+            this.lblExtraHours.Text = "(extra hours)";
+            // 
+            // btnAddExtra
+            // 
+            this.btnAddExtra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddExtra.Enabled = false;
+            this.btnAddExtra.Location = new System.Drawing.Point(460, 232);
+            this.btnAddExtra.Name = "btnAddExtra";
+            this.btnAddExtra.Size = new System.Drawing.Size(181, 23);
+            this.btnAddExtra.TabIndex = 9;
+            this.btnAddExtra.Text = "Add Extra Date and Time";
+            this.btnAddExtra.UseVisualStyleBackColor = true;
+            this.btnAddExtra.Click += new System.EventHandler(this.btnAddExtra_Click);
+            // 
             // EmployeeTimesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 622);
+            this.Controls.Add(this.btnAddExtra);
+            this.Controls.Add(this.lblExtraHours);
             this.Controls.Add(this.lblAbsentHours);
             this.Controls.Add(this.btnAddAbsent);
             this.Controls.Add(this.lblProgess);
@@ -379,5 +406,7 @@
         private System.Windows.Forms.Label lblProgess;
         private System.Windows.Forms.Button btnAddAbsent;
         private System.Windows.Forms.Label lblAbsentHours;
+        private System.Windows.Forms.Label lblExtraHours;
+        private System.Windows.Forms.Button btnAddExtra;
     }
 }

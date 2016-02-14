@@ -54,6 +54,7 @@ namespace PayrollTimeclock
             btnClockNow.Enabled = enabled;
             btnAddSpecific.Enabled = enabled;
             btnAddAbsent.Enabled = enabled;
+            btnAddExtra.Enabled = enabled;
             btnDeleteSpecific.Enabled = enabled;
             btnCurrentPeriod.Enabled = enabled;
             btnLastPeriod.Enabled = enabled;
@@ -76,27 +77,37 @@ namespace PayrollTimeclock
             lvwPairs.Items.Clear();
             double presentHours = 0;
             double absentHours = 0;
+            double extraHours = 0;
             foreach (TimePair pair in allPairs)
             {
                 string endTime = string.Empty;
                 string hours = string.Empty;
-                Color rowColor = Color.Pink;
-                string absent = string.Empty;
-                if (!pair.IsOpen)
+                Color rowColor;
+                string pairType = string.Empty;
+                if (pair.IsOpen)
+                    rowColor = Color.Pink;
+                else
                 {
                     endTime = FormatTimeOfDay(pair.EndEvent);
                     hours = pair.Length.TotalHours.ToString("N2");
                     rowColor = Color.White;
+                    if (pair.IsAbsent)
+                        pairType = " absent";
+                    else if (pair.IsExtra)
+                        pairType = " extra";
+                    if (pair.IsMixed)
+                    {
+                        pairType = " mixed";
+                        rowColor = Color.Red;
+                    }
                 }
-                if (pair.IsAbsent)
-                    absent = " absent";
                 ListViewItem item = new ListViewItem(
                     new string[] {
                         pair.StartEvent.InOutDateTime.Date.ToString("MM/dd/yyyy"),
                         pair.StartEvent.InOutDateTime.DayOfWeek.ToString(),
                         FormatTimeOfDay(pair.StartEvent),
                         endTime,
-                        hours + absent
+                        hours + pairType
                     }
                     );
                 item.BackColor = rowColor;
@@ -105,10 +116,13 @@ namespace PayrollTimeclock
                     absentHours += pair.Length.TotalHours;
                 else
                     presentHours += pair.Length.TotalHours;
+                if (pair.IsExtra)
+                    extraHours += pair.Length.TotalHours;
             }
             lblPresentHours.Text = presentHours.ToString("N2") + " present hours";
-            lblAbsentHours.Text = absentHours.ToString("N2") + " absent hours";
             lblOvertimeHours.Text = overtimeHours.ToString("N2") + " overtime hours";
+            lblAbsentHours.Text = "{" + absentHours.ToString("N2") + "} absent hours";
+            lblExtraHours.Text = "[" + extraHours.ToString("N2") + "] extra hours";
             lblPeriodDates.Text = _Period.StartDate.ToString("MM/dd/yyyy") +
                 " - " + _Period.EndDate.ToString("MM/dd/yyyy");
         }
@@ -118,11 +132,15 @@ namespace PayrollTimeclock
             string result = clockEvent.InOutDateTime.ToString("hh:mmtt");
             if (clockEvent.Status == EventStatus.Overridden)
             {
-                result = "<<" + result + ">>";
+                result = "<" + result + ">";
             }
             else if (clockEvent.Status == EventStatus.Absent)
             {
                 result = "{" + result + "}";
+            }
+            else if (clockEvent.Status == EventStatus.Extra)
+            {
+                result = "[" + result + "]";
             }
             return result;
         }
@@ -151,6 +169,16 @@ namespace PayrollTimeclock
             if (!TryParseDateTime(out when))
                 return;
             _Times.ClockAbsent(when);
+            _Times.SaveToFile();
+            ShowTimeCard();
+        }
+
+        private void btnAddExtra_Click(object sender, EventArgs e)
+        {
+            DateTime when;
+            if (!TryParseDateTime(out when))
+                return;
+            _Times.ClockExtra(when);
             _Times.SaveToFile();
             ShowTimeCard();
         }

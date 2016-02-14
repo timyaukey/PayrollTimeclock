@@ -40,6 +40,7 @@
             this.btnOkay = new System.Windows.Forms.Button();
             this.lblTotals = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
+            this.colExtraHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lblPeriod
@@ -64,7 +65,8 @@
             this.colRegHours,
             this.colOvrHours,
             this.colVacHours,
-            this.colAbsentHours});
+            this.colAbsentHours,
+            this.colExtraHours});
             this.lvwTimecards.FullRowSelect = true;
             this.lvwTimecards.GridLines = true;
             this.lvwTimecards.Location = new System.Drawing.Point(12, 25);
@@ -147,6 +149,12 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // colExtraHours
+            // 
+            this.colExtraHours.Text = "Extra Hours";
+            this.colExtraHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colExtraHours.Width = 90;
+            // 
             // TimecardReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,5 +188,6 @@
         private System.Windows.Forms.Label lblTotals;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.ColumnHeader colAbsentHours;
+        private System.Windows.Forms.ColumnHeader colExtraHours;
     }
 }
