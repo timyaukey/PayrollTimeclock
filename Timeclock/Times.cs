@@ -18,7 +18,6 @@ namespace PayrollTimeclock
     {
         public readonly string FolderName;
         private LinkedList<ClockEvent> _Events;
-        private bool _Modified;
 
         public static Times Load(string folderName)
         {
@@ -31,7 +30,6 @@ namespace PayrollTimeclock
         {
             FolderName = folderName;
             _Events = new LinkedList<ClockEvent>();
-            _Modified = false;
         }
 
         private void LoadFromFile()
@@ -43,26 +41,29 @@ namespace PayrollTimeclock
                     ClockEvent clockEvent = ClockEvent.Read(reader);
                     if (clockEvent == null)
                         break;
-                    _Events.AddLast(clockEvent);
+                    if (clockEvent.Status == EventStatus.Deleted)
+                    {
+                        // Older versions of this software changed the old ClockEvent in the file
+                        // when it was deleted, but new versions simply append a delete record to
+                        // the file and let this routine match the delete record with the original
+                        // record. If Delete() returns true then it found an original record matching
+                        // the date and time and marked it as deleted, which means it was a new style
+                        // delete, otherwise the delete record is an old style one and we add it to
+                        // the list.
+                        if (!Delete(clockEvent))
+                            _Events.AddLast(clockEvent);
+                    }
+                    else
+                        _Events.AddLast(clockEvent);
                 }
             }
         }
 
-        public void SaveToFile()
+        public void SaveToFile(ClockEvent newEvent)
         {
-            if (_Modified)
+            using (TextWriter writer = new StreamWriter(FileName, true))
             {
-                string tempFile = FileName + ".new";
-                using (TextWriter writer = new StreamWriter(tempFile))
-                {
-                    foreach (ClockEvent clockEvent in _Events)
-                    {
-                        clockEvent.Write(writer);
-                    }
-                }
-                if (File.Exists(FileName))
-                    File.Delete(FileName);
-                File.Move(tempFile, FileName);
+                newEvent.Write(writer);
             }
         }
 
@@ -144,44 +145,47 @@ namespace PayrollTimeclock
             return overtimeHours;
         }
 
-        public void ClockInOut(DateTime when)
+        public ClockEvent ClockInOut(DateTime when)
         {
-            _Events.AddLast(new ClockEvent(ClockEvent.Round(when), DateTime.Now, EventStatus.Overridden));
-            _Modified = true;
+            ClockEvent newEvent = new ClockEvent(ClockEvent.Round(when), DateTime.Now, EventStatus.Overridden);
+            _Events.AddLast(newEvent);
+            return newEvent;
         }
 
-        public DateTime ClockInOut()
+        public ClockEvent ClockInOut()
         {
-            DateTime whenRounded = ClockEvent.Round(DateTime.Now);
-            _Events.AddLast(new ClockEvent(whenRounded, DateTime.Now, EventStatus.Normal));
-            _Modified = true;
-            return whenRounded;
+            ClockEvent newEvent = new ClockEvent(ClockEvent.Round(DateTime.Now), DateTime.Now, EventStatus.Normal);
+            _Events.AddLast(newEvent);
+            return newEvent;
         }
 
-        public DateTime ClockAbsent(DateTime when)
+        public ClockEvent ClockAbsent(DateTime when)
         {
-            DateTime whenRounded = ClockEvent.Round(when);
-            _Events.AddLast(new ClockEvent(whenRounded, DateTime.Now, EventStatus.Absent));
-            _Modified = true;
-            return whenRounded;
+            ClockEvent newEvent = new ClockEvent(ClockEvent.Round(when), DateTime.Now, EventStatus.Absent);
+            _Events.AddLast(newEvent);
+            return newEvent;
         }
 
-        public DateTime ClockExtra(DateTime when)
+        public ClockEvent ClockExtra(DateTime when)
         {
-            DateTime whenRounded = ClockEvent.Round(when);
-            _Events.AddLast(new ClockEvent(whenRounded, DateTime.Now, EventStatus.Extra));
-            _Modified = true;
-            return whenRounded;
+            ClockEvent newEvent = new ClockEvent(ClockEvent.Round(when), DateTime.Now, EventStatus.Extra);
+            _Events.AddLast(newEvent);
+            return newEvent;
         }
 
-        public bool Delete(DateTime when)
+        public bool Delete(DateTime when, out ClockEvent newEvent)
+        {
+            newEvent = new ClockEvent(ClockEvent.Round(when), DateTime.Now, EventStatus.Deleted);
+            return Delete(newEvent);
+        }
+
+        private bool Delete(ClockEvent newEvent)
         {
             foreach (ClockEvent clockEvent in _Events)
             {
-                if (clockEvent.InOutDateTime == when && clockEvent.Status != EventStatus.Deleted)
+                if (clockEvent.InOutDateTime == newEvent.InOutDateTime && clockEvent.Status != EventStatus.Deleted)
                 {
                     clockEvent.Status = EventStatus.Deleted;
-                    _Modified = true;
                     return true;
                 }
             }

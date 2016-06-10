@@ -43,10 +43,10 @@ namespace PayrollTimeclock
 
         private void EmployeeTimesForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (_Times != null)
-            {
-                _Times.SaveToFile();
-            }
+            //if (_Times != null)
+            //{
+            //    _Times.SaveToFile();
+            //}
         }
 
         private void EnableButtons(bool enabled)
@@ -147,10 +147,10 @@ namespace PayrollTimeclock
 
         private void btnClockNow_Click(object sender, EventArgs e)
         {
-            DateTime whenRounded = _Times.ClockInOut();
-            _Times.SaveToFile();
+            ClockEvent  newEvent = _Times.ClockInOut();
+            _Times.SaveToFile(newEvent);
             ShowTimeCard();
-            txtSpecificDateTime.Text = whenRounded.ToString("MM/dd/yyyy hh:mmtt");
+            txtSpecificDateTime.Text = newEvent.InOutDateTime.ToString("MM/dd/yyyy hh:mmtt");
         }
 
         private void btnAddSpecific_Click(object sender, EventArgs e)
@@ -158,8 +158,8 @@ namespace PayrollTimeclock
             DateTime when;
             if (!TryParseDateTime(out when))
                 return;
-            _Times.ClockInOut(when);
-            _Times.SaveToFile();
+            ClockEvent newEvent = _Times.ClockInOut(when);
+            _Times.SaveToFile(newEvent);
             ShowTimeCard();
         }
 
@@ -168,8 +168,8 @@ namespace PayrollTimeclock
             DateTime when;
             if (!TryParseDateTime(out when))
                 return;
-            _Times.ClockAbsent(when);
-            _Times.SaveToFile();
+            ClockEvent newEvent = _Times.ClockAbsent(when);
+            _Times.SaveToFile(newEvent);
             ShowTimeCard();
         }
 
@@ -178,22 +178,23 @@ namespace PayrollTimeclock
             DateTime when;
             if (!TryParseDateTime(out when))
                 return;
-            _Times.ClockExtra(when);
-            _Times.SaveToFile();
+            ClockEvent newEvent = _Times.ClockExtra(when);
+            _Times.SaveToFile(newEvent);
             ShowTimeCard();
         }
 
         private void btnDeleteSpecific_Click(object sender, EventArgs e)
         {
             DateTime when;
+            ClockEvent newEvent;
             if (!TryParseDateTime(out when))
                 return;
-            if (!_Times.Delete(when))
+            if (!_Times.Delete(when, out newEvent))
             {
                 MessageBox.Show("Could not find that date and time.");
                 return;
             }
-            _Times.SaveToFile();
+            _Times.SaveToFile(newEvent);
             ShowTimeCard();
         }
 
