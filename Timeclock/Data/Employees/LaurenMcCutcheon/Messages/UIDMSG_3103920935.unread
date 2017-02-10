@@ -1,0 +1,30 @@
+<message>
+  <subject>Enhancements to timeclock program</subject>
+  <sender>Tim Yaukey&lt;yaukey@willowsoft.com&gt;</sender>
+  <recipient>Deirdre Apple&lt;DeirdreApple@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Delanie Martin&lt;delaniemartin@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Elysse Bennett&lt;ElysseBennett@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Janet Zornek&lt;janetzornek@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Kimberly J. Leigh&lt;KimLeigh@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Lauren McCutcheon&lt;LaurenMcCutcheon@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>McKensie Lui&lt;McKensieLui@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Misha Marie&lt;MishaMarie@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Piera Callahan&lt;PieraCallahan@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Stefanie Hood&lt;stefaniehood@schmidtsgardencenter.com&gt;</recipient>
+  <senddatetime>2/10/2016 4:56 AM</senddatetime>
+  <body>If you pay attention to this software you will notice some new options.
+
+"Add Specific Date and Time" has been changed to "Add Present Date and Time", and "Delete Specific Date and Time" has been chanbed to "Delete Date and Time". These two buttons still do what they used to do, the names have simply changed.
+
+The reason they have changed is because you can now use this software to keep track of time you took off from work, with a third button on the same page, "Add Absent Date and Time". This works exactly like "Add Present Date and Time", except you won't get paid for it. So if you go home early, or are sick, or absent for any other reason, clock in the times you were gone with this new button.
+
+Absent hours are now totalled on the employee times form just like present and overtime hours.
+
+The "Delete Date and Time" button will delete either kind of time, not just "present" times.
+
+If either time in a start/end time pair was entered with this new button it is considered "absent" time, and will be shown with { } around it in various places.
+
+The reason for tracking "absent" time is so you (and I) know how much time you have trimmed from your scheduled hours. Thus you can keep track of the affect on your paycheck, and I know how much to thank you for saving me in payroll cost!
+
+To help you see this information for all staff, and to help everyone see who is working when, I've added a new button at the bottom of the main form named "Pay Period Reports".  Click it and choose the pay period and you'll see a day-by-day person-by-person table of time present and time absent (absent is always in { }).</body>
+</message>

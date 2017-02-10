@@ -1,0 +1,39 @@
+<message>
+  <subject>More changes to timeclock program</subject>
+  <sender>Timothy Yaukey&lt;yaukey@willowsoft.com&gt;</sender>
+  <recipient>staff@schmidtsgardencenter.com</recipient>
+  <senddatetime>2/15/2016 7:04 PM</senddatetime>
+  <body>All -
+
+After thinking through what I'm trying to accomplish with my changes to the
+timeclock program I've made one more change. This change splits "present"
+time into "scheduled" and "extra" time. Hopefully I've chosen self
+explanatory labels - "scheduled" is time you actually work within your
+regular schedule, and "extra" time is time you actually work outside that
+including working other people's shifts, making time up after being sick,
+etc. Obviously, you get paid for both "scheduled" and "extra" time.
+
+There is now an "Add Extra Date and Time" button, and "Add Present Date and
+Time" becomes "Add Scheduled Date and Time". The "Clock In/Out" button at
+the top is "Scheduled" time.
+
+"Extra" time is shown in the same places as "absent" time, and is shown
+surrounded by "[ ]". "Present" time is still shown in several places, and
+is simply "scheduled" and "extra" added together.
+
+This should make it easier to to enter times when you are switching shifts
+and doing other things where you make up time or move time around, because
+you don't have to track in your head if you intend to make up time that you
+took off (or were sick). Just enter your scheduled time you worked as
+"scheduled" time, your scheduled time you missed as "absent" hours
+(regardless of why or what you plan to do in connection to them), and any
+hours you worked outside your scheduled time as "extra".
+
+With these three categories of time it's easy to see if your total time
+worked is more or less than scheduled - if "extra" is greater than
+"absent", then you've increased your net hours. If "extra" is less than
+"absent", then you saved the store money on payroll (and I thank you!).
+
+Thanks,
+Tim</body>
+</message>

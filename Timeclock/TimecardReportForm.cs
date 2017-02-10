@@ -32,6 +32,7 @@ namespace PayrollTimeclock
             _Period = period;
             _PrivilegedMode = privilegedMode;
             btnExport.Visible = _PrivilegedMode;
+            btnClipboardExport.Visible = _PrivilegedMode;
             AddDayColumns();
             ShowEmployees();
             ShowDialog();
@@ -195,6 +196,31 @@ namespace PayrollTimeclock
         private void ExportHoursValue(TextWriter writer, Person employee, string code, double hours)
         {
             writer.WriteLine("{0},E,{1},{2:N2}", employee.ExternalID.GetValue, code, hours);
+        }
+
+        private void btnClipboardExport_Click(object sender, EventArgs e)
+        {
+            StringBuilder output = new StringBuilder();
+            foreach (ListViewItem item in lvwTimecards.Items)
+            {
+                if (item.Checked)
+                {
+                    ReportItem reportItem = (ReportItem)item.Tag;
+                    if (reportItem != null)
+                    {
+                        decimal regularHours = (decimal)reportItem.TotalHours - (decimal)reportItem.OvertimeHours;
+                        decimal overtimeHours = (decimal)reportItem.OvertimeHours;
+                        decimal sickHours = 0.00M;
+                        string line = reportItem.Employee.FullName.GetValue + "\t" + regularHours.ToString("F2") +
+                            "\t" + overtimeHours.ToString("F2") +
+                            "\t" + sickHours.ToString("F2");
+                        output.AppendLine(line);
+                    }
+                }
+            }
+            System.Windows.Forms.Clipboard.Clear();
+            System.Windows.Forms.Clipboard.SetText(output.ToString());
+            MessageBox.Show("Payroll information saved to clipboard.");
         }
     }
 }

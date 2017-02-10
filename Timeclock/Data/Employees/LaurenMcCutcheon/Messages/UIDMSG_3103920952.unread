@@ -1,0 +1,31 @@
+<message>
+  <subject>Another tip for the new timecard program...</subject>
+  <sender>Timothy Yaukey&lt;yaukey@willowsoft.com&gt;</sender>
+  <recipient>staff@schmidtsgardencenter.com</recipient>
+  <senddatetime>2/16/2016 1:32 AM</senddatetime>
+  <body>All -
+
+Unlike my first attempt at more advanced time tracking, the software now
+requires that both times of a start/end pair be entered the same way. For
+example, if you were absent from 2pm to 5:15pm, BOTH these times must be
+entered with "Add Absent Date and Time". If you "mix" time types in a
+start/end pair it will say "mixed" on that line in the time window and
+highlight it in bright red. If you see this just delete the time that was
+entered the wrong way and enter it correctly.
+
+Also, you will find it makes your life easier in the software if you do not
+enter two time events with the exact same time. So when you leave partway
+through a shift enter the start of the absent time as 1 minute after the
+end of scheduled time. For example, if you left at 11am on a scheduled
+8:45am to 2:30pm shift you would enter scheduled time from 8:45am to
+11:00am, and absent from 11:01am to 2:30pm. This is because if you have two
+"events" at the same time, the software isn't smart enough to figure out
+which one marks the end of one time pair and which one marks the start of
+the other. If it guesses wrong it will say both time pairs are "mixed".
+
+I know this sounds really screwed up, but hopefully it will get routine
+fairly quickly.
+
+Thanks,
+Tim</body>
+</message>

@@ -1,8 +1,0 @@
-<message>
-  <subject>Sent:TO everyone except Judy</subject>
-  <sender>Judy 4920 R. Test&lt;JudyTest@schmidtsgardencenter.com&gt;</sender>
-  <recipient>Judy 4920 R. Test&lt;JudyTest@schmidtsgardencenter.com&gt;</recipient>
-  <senddatetime>3/15/2015 10:13 PM</senddatetime>
-  <body>Sent by judy to everyone.
-That means 3 recipients.</body>
-</message>

@@ -37,10 +37,11 @@
             this.colOvrHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colVacHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAbsentHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colExtraHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnOkay = new System.Windows.Forms.Button();
             this.lblTotals = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
-            this.colExtraHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnClipboardExport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblPeriod
@@ -71,7 +72,7 @@
             this.lvwTimecards.GridLines = true;
             this.lvwTimecards.Location = new System.Drawing.Point(12, 25);
             this.lvwTimecards.Name = "lvwTimecards";
-            this.lvwTimecards.Size = new System.Drawing.Size(883, 323);
+            this.lvwTimecards.Size = new System.Drawing.Size(983, 323);
             this.lvwTimecards.TabIndex = 1;
             this.lvwTimecards.UseCompatibleStateImageBehavior = false;
             this.lvwTimecards.View = System.Windows.Forms.View.Details;
@@ -117,13 +118,19 @@
             this.colAbsentHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colAbsentHours.Width = 90;
             // 
+            // colExtraHours
+            // 
+            this.colExtraHours.Text = "Extra Hours";
+            this.colExtraHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colExtraHours.Width = 90;
+            // 
             // btnOkay
             // 
             this.btnOkay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOkay.Location = new System.Drawing.Point(804, 354);
+            this.btnOkay.Location = new System.Drawing.Point(904, 354);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(91, 23);
-            this.btnOkay.TabIndex = 4;
+            this.btnOkay.TabIndex = 5;
             this.btnOkay.Text = "OK";
             this.btnOkay.UseVisualStyleBackColor = true;
             this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
@@ -141,25 +148,31 @@
             // btnExport
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Location = new System.Drawing.Point(707, 354);
+            this.btnExport.Location = new System.Drawing.Point(770, 354);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(91, 23);
-            this.btnExport.TabIndex = 3;
-            this.btnExport.Text = "Export";
+            this.btnExport.Size = new System.Drawing.Size(128, 23);
+            this.btnExport.TabIndex = 4;
+            this.btnExport.Text = "CompuPay Export";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // colExtraHours
+            // btnClipboardExport
             // 
-            this.colExtraHours.Text = "Extra Hours";
-            this.colExtraHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colExtraHours.Width = 90;
+            this.btnClipboardExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClipboardExport.Location = new System.Drawing.Point(635, 354);
+            this.btnClipboardExport.Name = "btnClipboardExport";
+            this.btnClipboardExport.Size = new System.Drawing.Size(129, 23);
+            this.btnClipboardExport.TabIndex = 3;
+            this.btnClipboardExport.Text = "Clipboard Export";
+            this.btnClipboardExport.UseVisualStyleBackColor = true;
+            this.btnClipboardExport.Click += new System.EventHandler(this.btnClipboardExport_Click);
             // 
             // TimecardReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 389);
+            this.ClientSize = new System.Drawing.Size(1007, 389);
+            this.Controls.Add(this.btnClipboardExport);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.lblTotals);
             this.Controls.Add(this.btnOkay);
@@ -189,5 +202,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.ColumnHeader colAbsentHours;
         private System.Windows.Forms.ColumnHeader colExtraHours;
+        private System.Windows.Forms.Button btnClipboardExport;
     }
 }
