@@ -63,6 +63,8 @@ namespace PayrollTimeclock
             lvwTimecards.Items.Clear();
             foreach (Person employee in PayrollStatic.People)
             {
+                if (Times.BareNames(employee.FolderName).Count != 1)
+                    MessageBox.Show("Employee " + employee.FullName.GetValue + " has conflicting time data files.");
                 Times times = Times.Load(employee.FolderName, Times.StdBareName);
                 List<TimePair> timePairs;
                 List<TimePair> absentPairs;
