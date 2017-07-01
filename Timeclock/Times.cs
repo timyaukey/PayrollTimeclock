@@ -16,19 +16,39 @@ namespace PayrollTimeclock
 
     public class Times
     {
-        public readonly string FolderName;
+        private readonly string FolderName;
         private LinkedList<ClockEvent> _Events;
+        public const string StdBareName = "Times.dat";
+        private readonly string _BareName;
 
-        public static Times Load(string folderName)
+        public static Times Load(string folderName, string bareName)
         {
-            Times result = new Times(folderName);
+            Times result = new Times(folderName, bareName);
             result.LoadFromFile();
             return result;
         }
 
-        private Times(string folderName)
+        public static List<string> BareNames(string folderName)
+        {
+            List<string> bareNames = new List<string>();
+            foreach(string fullName in Directory.GetFiles(PayrollStatic.EmployeesFolder + "\\" + folderName))
+            {
+                string fileName = Path.GetFileName(fullName);
+                if (fileName.StartsWith("times", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (fileName.EndsWith(".dat",StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        bareNames.Add(fileName);
+                    }
+                }
+            }
+            return bareNames;
+        }
+
+        private Times(string folderName, string bareName)
         {
             FolderName = folderName;
+            _BareName = bareName;
             _Events = new LinkedList<ClockEvent>();
         }
 
@@ -194,7 +214,7 @@ namespace PayrollTimeclock
 
         private string FileName
         {
-            get { return PayrollStatic.EmployeesFolder + "\\" + FolderName + "\\Times.dat"; }
+            get { return PayrollStatic.EmployeesFolder + "\\" + FolderName + "\\" + _BareName; }
         }
     }
 }

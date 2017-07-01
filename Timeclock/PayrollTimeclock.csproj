@@ -78,6 +78,12 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChooseTimeFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseTimeFileForm.Designer.cs">
+      <DependentUpon>ChooseTimeFileForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClockEvent.cs" />
     <Compile Include="EnterAdminPwdForm.cs">
       <SubType>Form</SubType>
@@ -121,6 +127,9 @@
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChooseTimeFileForm.resx">
+      <DependentUpon>ChooseTimeFileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EnterAdminPwdForm.resx">
       <DependentUpon>EnterAdminPwdForm.cs</DependentUpon>

@@ -63,7 +63,7 @@ namespace PayrollTimeclock
             lvwTimecards.Items.Clear();
             foreach (Person employee in PayrollStatic.People)
             {
-                Times times = Times.Load(employee.FolderName);
+                Times times = Times.Load(employee.FolderName, Times.StdBareName);
                 List<TimePair> timePairs;
                 List<TimePair> absentPairs;
                 double presentHours = 0.0;

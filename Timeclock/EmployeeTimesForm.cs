@@ -17,6 +17,7 @@ namespace PayrollTimeclock
         private Person _Employee;
         private Times _Times;
         private PayrollPeriod _Period;
+        private bool _ReadOnly;
 
         public EmployeeTimesForm()
         {
@@ -25,9 +26,25 @@ namespace PayrollTimeclock
 
         public void Show(Person employee)
         {
+            string chosenBareName;
             _Employee = employee;
+            List<string> bareTimeNames = Times.BareNames(_Employee.FolderName);
             this.Text = "Employee Times For " + _Employee.FullName.GetValue;
-            _Times = Times.Load(_Employee.FolderName);
+            if (bareTimeNames.Count == 1)
+            {
+                chosenBareName = bareTimeNames[0];
+            }
+            else
+            {
+                using (ChooseTimeFileForm chooseFrm = new ChooseTimeFileForm())
+                {
+                    chosenBareName = chooseFrm.ChooseFile(bareTimeNames, _Employee.FolderName);
+                    if (chosenBareName == null)
+                        return;
+                }
+            }
+            _ReadOnly = !chosenBareName.Equals(Times.StdBareName, StringComparison.InvariantCultureIgnoreCase);
+            _Times = Times.Load(_Employee.FolderName, chosenBareName);
             _Period = PayrollStatic.Settings.CurrentPeriod;
             this.ShowDialog();
         }
@@ -51,15 +68,15 @@ namespace PayrollTimeclock
 
         private void EnableButtons(bool enabled)
         {
-            btnClockNow.Enabled = enabled;
-            btnAddSpecific.Enabled = enabled;
-            btnAddAbsent.Enabled = enabled;
-            btnAddExtra.Enabled = enabled;
-            btnDeleteSpecific.Enabled = enabled;
+            btnClockNow.Enabled = enabled & !_ReadOnly;
+            btnAddSpecific.Enabled = enabled & !_ReadOnly;
+            btnAddAbsent.Enabled = enabled & !_ReadOnly;
+            btnAddExtra.Enabled = enabled & !_ReadOnly;
+            btnDeleteSpecific.Enabled = enabled & !_ReadOnly;
             btnCurrentPeriod.Enabled = enabled;
             btnLastPeriod.Enabled = enabled;
-            btnReadMessage.Enabled = enabled;
-            btnSendMessage.Enabled = enabled;
+            btnReadMessage.Enabled = enabled & !_ReadOnly;
+            btnSendMessage.Enabled = enabled & !_ReadOnly;
         }
 
         private void ShowTimeCard()
@@ -222,7 +239,7 @@ namespace PayrollTimeclock
         {
             _Period = PayrollStatic.Settings.CurrentPeriod;
             ShowTimeCard();
-            btnClockNow.Enabled = true;
+            btnClockNow.Enabled = !_ReadOnly;
         }
 
         private void btnLastPeriod_Click(object sender, EventArgs e)
