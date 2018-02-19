@@ -1,0 +1,7 @@
+<message>
+  <subject>Test email</subject>
+  <sender>Timothy Yaukey&lt;yaukey@willowsoft.com&gt;</sender>
+  <recipient>staff@schmidtsgardencenter.com</recipient>
+  <senddatetime>9/17/2017 7:59 PM</senddatetime>
+  <body>Ignore this. I'm testing our email system.</body>
+</message>

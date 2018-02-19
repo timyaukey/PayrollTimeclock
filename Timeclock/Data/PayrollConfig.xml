@@ -5,7 +5,7 @@
   <WebSiteURL>http://sites.google.com/site/schmidtsbook/home</WebSiteURL>
   <AdminPasswordHash>U03RBLwvCcwHCK6wFv0BDg==</AdminPasswordHash>
   <NewsSources>
-    <NewsSource Address="http://schmidtsfeedback.blogspot.com/feeds/posts/default" />
+    <!--<NewsSource Address="http://schmidtsfeedback.blogspot.com/feeds/posts/default" />-->
   </NewsSources>
   <SMTPServer>smtp.willowsoft4.com</SMTPServer>
   <SMTPPort>587</SMTPPort>

@@ -58,6 +58,8 @@ namespace PayrollTimeclock
             double[] totalPresentByDay = new double[daysInPeriod];
             double[] totalAbsentByDay = new double[daysInPeriod];
             double[] totalExtraByDay = new double[daysInPeriod];
+            DateTime?[] dayStartByDay = new DateTime?[daysInPeriod];
+            DateTime?[] dayEndByDay = new DateTime?[daysInPeriod];
             lblPeriod.Text = _Period.StartDate.ToString("MM/dd/yyyy") +
                 " - " + _Period.EndDate.ToString("MM/dd/yyyy");
             lvwTimecards.Items.Clear();
@@ -98,6 +100,18 @@ namespace PayrollTimeclock
                         }
                         if (pair.IsMixed)
                             hasMixedPairs = true;
+                        if (!dayStartByDay[dayOffset].HasValue)
+                        {
+                            dayStartByDay[dayOffset] = pair.StartEvent.InOutDateTime;
+                            dayEndByDay[dayOffset] = pair.EndEvent.InOutDateTime;
+                        }
+                        else
+                        {
+                            if (dayStartByDay[dayOffset] > pair.StartEvent.InOutDateTime)
+                                dayStartByDay[dayOffset] = pair.StartEvent.InOutDateTime;
+                            if (dayEndByDay[dayOffset] < pair.EndEvent.InOutDateTime)
+                                dayEndByDay[dayOffset] = pair.EndEvent.InOutDateTime;
+                        }
                     }
                 }
                 foreach (TimePair pair in absentPairs)
@@ -148,7 +162,8 @@ namespace PayrollTimeclock
                     cardItem.BackColor = Color.Pink;
                 lvwTimecards.Items.Add(cardItem);
             }
-            List<string> totalsValues = new List<string>(new string[] { "Totals", "", "", "", "", "", "", "" });
+
+            List<string> totalsValues = new List<string>(new string[] { "Total Hours Worked", "", "", "", "", "", "", "" });
             for (int i = 0; i < daysInPeriod; i++)
             {
                 string dayValue = totalPresentByDay[i].ToString("N2");
@@ -159,7 +174,42 @@ namespace PayrollTimeclock
                 totalsValues.Add(dayValue);
             }
             ListViewItem totalsItem = new ListViewItem(totalsValues.ToArray());
+            totalsItem.BackColor = Color.LightSeaGreen;
             lvwTimecards.Items.Add(totalsItem);
+
+            List<string> hoursOpenValues = new List<string>(new string[] { "Hours Open", "", "", "", "", "", "", "" });
+            for (int i = 0; i < daysInPeriod; i++)
+            {
+                string dayHours;
+                if (dayStartByDay[i].HasValue)
+                    dayHours = dayEndByDay[i].Value.Subtract(dayStartByDay[i].Value).TotalHours.ToString("#0.00");
+                else
+                    dayHours = "0.00";
+                hoursOpenValues.Add(dayHours);
+            }
+            ListViewItem hoursOpenItem = new ListViewItem(hoursOpenValues.ToArray());
+            hoursOpenItem.BackColor = Color.LightSeaGreen;
+            lvwTimecards.Items.Add(hoursOpenItem);
+
+            List<string> averagePeopleValues = new List<string>(new string[] { "Average People", "", "", "", "", "", "", "" });
+            for (int i = 0; i < daysInPeriod; i++)
+            {
+                double dayHours;
+                if (dayStartByDay[i].HasValue)
+                    dayHours = dayEndByDay[i].Value.Subtract(dayStartByDay[i].Value).TotalHours;
+                else
+                    dayHours = 0d;
+                string averagePeople;
+                if (dayHours > 0d)
+                    averagePeople = (totalPresentByDay[i] / dayHours).ToString("0.00");
+                else
+                    averagePeople = "0.00";
+                averagePeopleValues.Add(averagePeople);
+            }
+            ListViewItem averagePeopleItem = new ListViewItem(averagePeopleValues.ToArray());
+            averagePeopleItem.BackColor = Color.LightSeaGreen;
+            lvwTimecards.Items.Add(averagePeopleItem);
+
             lblTotals.Text = "Present Total " + grandPresentHours.ToString("N2") +
                 ", Regular Total " + (grandPresentHours - grandOvertimeHours).ToString("N2") +
                 ", Overtime Total " + grandOvertimeHours.ToString("N2") +

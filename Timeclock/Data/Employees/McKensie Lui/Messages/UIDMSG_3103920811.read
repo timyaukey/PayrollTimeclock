@@ -1,0 +1,22 @@
+<message>
+  <subject>Drink counts</subject>
+  <sender>Timothy Yaukey&lt;yaukey@willowsoft.com&gt;</sender>
+  <recipient>staff@schmidtsgardencenter.com</recipient>
+  <senddatetime>5/31/2016 12:31 AM</senddatetime>
+  <body>Everyone -
+
+Please remember to use the clicker by the coffee register to count the
+number of drinks we serve, and write that number on the register tape (or
+somewhere everyone knows) at the end of the day. And whoever does the
+deposits, please make sure to enter a number into the appropriate field in
+the spreadsheets.
+
+If we don't have a drink count for the day, estimate it from the
+transaction counts. Do NOT put "N/A" in the spreadsheet - that blows up
+some analytical software I use to read those spreadsheets.
+
+Let's try to get to counting every single drink!
+
+Thanks,
+Tim</body>
+</message>

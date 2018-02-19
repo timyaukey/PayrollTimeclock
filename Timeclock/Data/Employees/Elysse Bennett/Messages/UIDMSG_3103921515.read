@@ -1,0 +1,62 @@
+<message>
+  <subject>A trick for taking inventory quickly</subject>
+  <sender>Timothy Yaukey&lt;yaukey@willowsoft.com&gt;</sender>
+  <recipient>Stefanie Hood&lt;stefaniehood@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Elysse Bennett&lt;elyssebennett@schmidtsgardencenter.com&gt;</recipient>
+  <recipient>Ann Morton&lt;annmorton@schmidtsgardencenter.com&gt;</recipient>
+  <senddatetime>1/25/2018 5:37 AM</senddatetime>
+  <body>I've discovered a clever trick that will greatly simplify recording our
+inventory information: Speech to text translation on a smartphone.
+
+On my android phone my virtual keyboard has a microphone button that
+translates my spoken words to text. I was able to create a text file in
+Dropbox, and when I edited it I was able to say the words...
+
+"One at two dollars and twenty nine cents
+seventeen at three dollars and fifty cents"
+
+And my phone translated this to...
+
+"1 at $2.29 17 at $3.50"
+
+It was very accurate, and it was very easy to delete characters from the
+end of the text it generated and redo it. The key was to say "(number)
+dollars and (number) cents" instead of something like "two twenty five".
+"two twenty five" was translated to "225" instead of "$2.25".
+
+While this text is not formatted with commas or line breaks between "x at
+$y" pairs, I can easily create a program to read text files formatted like
+this and load them into a spreadsheet. The key is I can look for the word
+"at" and for dollar signs.
+
+So long as you ALWAYS use the word "at" between quantity and price, and
+always says "dollar(s)" and "cents", I can translate it.
+
+With this technique one person can take inventory by speaking into a
+smartphone without writing or typing anything by hand. Just let the speech
+to text translation write down what you say in a file and save it in
+dropbox. Just glance at the screen every so often to make sure it is
+translating.
+
+Further, multiple people can do this simultaneously on different phones.
+
+SO...
+
+Please take the inventory by creating a text file for each group of similar
+merchandise, like we would put in a separate spreadsheet tab in other
+years. Put all these files in dropbox. The first line of each file must
+describe what merchandise is being counted, and the rest of the file must
+be "(count) at $(price)" pairs. No need for line breaks, commas, or any
+other separation between items. It wouldn't hurt to create a line break
+every ten items or so, so I can read the file by eyeball a little easier. A
+file can be as long as you want.
+
+I've created a folder "dropbox\schmidts\inventory 2018 inventory" to hold
+these files, and a file "Sample.txt" in it showing a very short example.
+Notice that the only punctuation is the dollar signs and decimal points.
+
+Create a short sample file or two to let me look at before we go all in on
+this approach.
+
+Tim</body>
+</message>
