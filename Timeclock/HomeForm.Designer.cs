@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
             this.lstEmployees = new System.Windows.Forms.ListBox();
             this.lblEmployees = new System.Windows.Forms.Label();
             this.btnClockInOut = new System.Windows.Forms.Button();
@@ -148,6 +149,7 @@
             this.Controls.Add(this.btnClockInOut);
             this.Controls.Add(this.lblEmployees);
             this.Controls.Add(this.lstEmployees);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HomeForm";

@@ -51,6 +51,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\MainIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -223,6 +226,7 @@
     <Content Include="PayrollConfig.sample.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\MainIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActiveUp.Net.Common\ActiveUp.Net.Common.csproj">
